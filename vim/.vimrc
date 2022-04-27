@@ -20,7 +20,15 @@ filetype plugin indent on
 syntax on
 
 " Color scheme
+if has('termguicolors')
+    set termguicolors
+endif
+
 set background=dark
+
+let g:everforest_background = 'medium'
+let g:evrforest_enable_italic = 1
+
 colorscheme everforest
 
 " Related to security for some reason
