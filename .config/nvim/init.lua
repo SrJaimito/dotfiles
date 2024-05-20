@@ -16,6 +16,8 @@ vim.opt.expandtab = true
 
 -- Wrap lines
 vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true
 
 -- Highlight cursor line
 vim.opt.cursorline = true
