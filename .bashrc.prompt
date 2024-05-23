@@ -1,0 +1,38 @@
+# Custom prompt
+function prompt_command {
+    ARROW=$'\uE0B0'
+    TICK=$'\u2714'
+    CROSS=$'\u2718'
+    CORNER=$'\u2514\u2500'
+
+    BLACK_FG="\[\033[38;2;36;39;58m\]"
+    GREEN_FG="\[\033[1;32m\]"
+    GREEN_BG="\[\033[1;42m\]"
+    BLUE_FG="\[\033[1;34m\]"
+    BLUE_BG="\[\033[1;44m\]"
+    PINK_FG="\[\033[1;35m\]"
+    PINK_BG="\[\033[1;45m\]"
+
+    PS1="${debian_chroot:+($debian_chroot)}$BLACK_FG$GREEN_BG \u@\h $GREEN_FG$BLUE_BG$ARROW$BLACK_FG \w "
+
+    CURRENT_GIT_BRANCH=$(git branch --show-current 2> /dev/null)
+    if [ -z $CURRENT_GIT_BRANCH ]; then
+        PS1="$PS1$BLUE_FG\[\033[1;49m\]$ARROW"
+    else
+        PS1="$PS1$BLUE_FG$PINK_BG$ARROW$BLACK_FG git:$CURRENT_GIT_BRANCH"
+
+        CURRENT_GIT_CHANGES=$(git status --short | wc -l)
+        if [[ $CURRENT_GIT_CHANGES -ne 0 ]]; then
+            PS1="$PS1 $CURRENT_GIT_CHANGES$CROSS"
+        else
+            PS1="$PS1 $TICK"
+        fi
+
+        PS1="$PS1 $PINK_FG\[\033[1;49m\]$ARROW"
+    fi
+
+    PS1="$PS1\[\033[1;39;49m\]\n$CORNER \$ \[\033[0m\]"
+}
+
+export PROMPT_COMMAND=prompt_command
+
