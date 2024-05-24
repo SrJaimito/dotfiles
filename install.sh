@@ -2,17 +2,17 @@
 
 
 function ask_install {
-    echo -n "[*] $1 [Y/n]"
+    echo -n " [*] $1 [Y/n]"
     read -n 1 -r -s ANSWER
 
     echo -e -n "\r [*] $1 "
 
     if [[ $ANSWER =~ ^[Yy]$ || -z $ANSWER ]]
     then
-        echo -e "\xE2\x9C\x94    "
+        echo $'\u2714    '
         return 0
     else
-        echo -e "\xE2\x9D\x8C    "
+        echo $'\u2718    '
         return 1
     fi
 }
@@ -20,8 +20,12 @@ function ask_install {
 
 echo "Select installation:"
 
-if ask_install Neovim
-then
+if ask_install Neovim; then
     cp -r .config/nvim ~/.config/.
+fi
+
+if ask_install "Custom bash prompt"; then
+    echo -e "\n# Custom bash prompt" >> ~/.bashrc
+    echo -e "source $(pwd)/.bashrc.prompt\n" >> ~/.bashrc
 fi
 
