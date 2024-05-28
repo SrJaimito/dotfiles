@@ -22,6 +22,7 @@ echo "Select updates:"
 
 if ask_install Neovim
 then
+    rm -rf .config/nvim
     cp -r ~/.config/nvim .config/.
 fi
 
