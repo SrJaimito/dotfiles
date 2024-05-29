@@ -29,3 +29,14 @@ if ask_install "Custom bash prompt"; then
     echo -e "source $(pwd)/.bashrc.prompt\n" >> ~/.bashrc
 fi
 
+if ask_install Qtile; then
+    rm -rf ~/.config/qtile
+    cp -r .config/qtile ~/.config/qtile
+fi
+
+if ask_install Kitty; then
+    rm -rf ~/.config/kitty
+    cp -r .config/kitty ~/.config/kitty
+fi
+
+
