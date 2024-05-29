@@ -20,9 +20,20 @@ function ask_install {
 
 echo "Select updates:"
 
-if ask_install Neovim
-then
+if ask_install Neovim; then
     rm -rf .config/nvim
     cp -r ~/.config/nvim .config/.
+fi
+
+if ask_install Qtile; then
+    rm -rf .config/qtile
+    mkdir -p .config/qtile
+    cp ~/.config/qtile/config.py .config/qtile/.
+    cp ~/.config/qtile/startup.sh .config/qtile/.
+fi
+
+if ask_install Kitty; then
+    rm -rf .config/kitty
+    cp -r ~/.config/kitty .config/.
 fi
 
