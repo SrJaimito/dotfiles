@@ -76,10 +76,12 @@ for vt in range(1, 8):
 
 
 groups = [
-    Group('1', label = '\uf120 TERM'),
-    Group('2', label = 'WWW'),
-    Group('3', label = 'MAIL'),
-    Group('4', label = 'MISC')
+    Group('1', label = '\uf121'),   # Dev
+    Group('2', label = '\uf120'),   # Terminal
+    Group('3', label = '\uf269'),   # Firefox
+    Group('4', label = '\uf42f'),   # Mail
+    Group('5', label = '\uf198'),   # Slack
+    Group('6', label = '\uf1bc')    # Spotify
 ]
 
 for i in groups:
@@ -107,23 +109,25 @@ for i in groups:
     )
 
 BORDER_WIDTH = 2
-SINGLE_BORDER_WIDTH = 0
+SINGLE_BORDER_WIDTH = 2
 
 BORDER_COLOR = '#24273A'
-BORDER_COLOR_FOCUS = '#8AADF4'
+BORDER_COLOR_FOCUS = '#FAB387'
 
 WINDOW_MARGIN = 10
 SINGLE_WINDOW_MARGIN = 20
 
+COMMON_LAYOUT_SETTINGS = {
+    'border_width': BORDER_WIDTH,
+    'single_border_width': SINGLE_BORDER_WIDTH,
+    'border_normal': BORDER_COLOR,
+    'border_focus': BORDER_COLOR_FOCUS,
+    'margin': WINDOW_MARGIN,
+    'single_margin': SINGLE_WINDOW_MARGIN
+}
+
 layouts = [
-    layout.MonadTall(
-        border_width = BORDER_WIDTH,
-        single_border_width = SINGLE_BORDER_WIDTH,
-        border_normal = BORDER_COLOR,
-        border_focus = BORDER_COLOR_FOCUS,
-        margin = WINDOW_MARGIN,
-        single_margin = SINGLE_WINDOW_MARGIN
-    )
+    layout.MonadTall(**COMMON_LAYOUT_SETTINGS)
 ]
 
 widget_defaults = dict(
@@ -133,29 +137,76 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+
+BAR_FOREGROUND_LIGHT = '#CDD6f4'
+BAR_FOREGROUND_DARK = '#1E1E2E'
+
+BAR_BACKGROUND = '#585B70'
+
+BAR_MARGINS = [0, 0, 0, 0]
+
+GROUP_SELECT_BACKGROUND = '#FAB387'
+
+COMMON_WIDGET_SETTINGS = {
+    'foreground': '#000000'
+}
+
 screens = [
     Screen(
         top = bar.Bar(
             [
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ('#ff0000', '#ffffff'),
-                    },
-                    name_transform=lambda name: name.upper(),
+                widget.TextBox(
+                    text = '\uebc9',
+                    foreground = GROUP_SELECT_BACKGROUND,
+                    fontsize = 36,
+                    padding = 10
                 ),
-                widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
+                widget.Spacer(length = 20),
+                widget.GroupBox(
+                    highlight_method = 'block',
+                    this_current_screen_border = GROUP_SELECT_BACKGROUND,
+                    this_screen_border = GROUP_SELECT_BACKGROUND,
+                    other_current_screen_border = None,
+                    other_screen_border = None,
+                    foreground = BAR_FOREGROUND_LIGHT,
+                    inactive = BAR_FOREGROUND_LIGHT,
+                    active = BAR_FOREGROUND_LIGHT,
+                    block_highlight_text_color = BAR_FOREGROUND_DARK,
+                    fontsize = 36,
+                    margin_x = 0,
+                    padding_x = 10
+                ),
+                widget.WindowName(foreground = BAR_FOREGROUND_LIGHT),
+                # widget.Systray(),
+                widget.TextBox(
+                    text = '\uf017',
+                    foreground = BAR_FOREGROUND_LIGHT,
+                    fontsize = 28
+                ),
+                widget.Clock(
+                    format = '%H:%M',
+                    foreground = BAR_FOREGROUND_LIGHT,
+                    padding = 10
+                ),
+                widget.TextBox(
+                    text = '\uf455',
+                    foreground = BAR_FOREGROUND_LIGHT,
+                    fontsize = 28
+                ),
+                widget.Clock(
+                    format = '%d/%m/%Y',
+                    foreground = BAR_FOREGROUND_LIGHT,
+                    padding = 10
+                ),
+                widget.QuickExit(**COMMON_WIDGET_SETTINGS),
             ],
-            42,
-            background = BORDER_COLOR,
-            margin = [WINDOW_MARGIN, WINDOW_MARGIN, 0, WINDOW_MARGIN]
-        ),
+            36,
+            background = BAR_BACKGROUND,
+            margin = BAR_MARGINS
+        )
     )
 ]
+
 
 # Drag floating layouts.
 mouse = [
@@ -206,6 +257,13 @@ wl_xcursor_size = 24
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = 'LG3D'
+
+
+@hook.subscribe.startup_once
+def startup_once():
+    script = os.path.expanduser('~/.config/qtile/startup_once.sh')
+    subprocess.run([script])
+
 
 @hook.subscribe.startup
 def startup():
