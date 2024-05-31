@@ -5,7 +5,7 @@ function prompt_command {
     CROSS=$'\u2718'
     CORNER=$'\u2514\u2500'
 
-    BLACK_FG="\[\033[38;2;36;39;58m\]"
+    BLACK_FG="\[\033[38;2;30;30;46m\]"
     GREEN_FG="\[\033[1;32m\]"
     GREEN_BG="\[\033[1;42m\]"
     BLUE_FG="\[\033[1;34m\]"
