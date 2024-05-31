@@ -181,23 +181,25 @@ screens = [
                 widget.TextBox(
                     text = '\uf017',
                     foreground = BAR_FOREGROUND_LIGHT,
-                    fontsize = 28
+                    fontsize = 24
                 ),
                 widget.Clock(
                     format = '%H:%M',
                     foreground = BAR_FOREGROUND_LIGHT,
                     padding = 10
                 ),
+                widget.Spacer(length = 20),
                 widget.TextBox(
                     text = '\uf455',
                     foreground = BAR_FOREGROUND_LIGHT,
-                    fontsize = 28
+                    fontsize = 24
                 ),
                 widget.Clock(
                     format = '%d/%m/%Y',
                     foreground = BAR_FOREGROUND_LIGHT,
                     padding = 10
                 ),
+                widget.Spacer(length = 20),
                 widget.QuickExit(**COMMON_WIDGET_SETTINGS),
             ],
             36,
