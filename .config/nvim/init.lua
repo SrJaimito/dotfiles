@@ -55,3 +55,19 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins')
 
+vim.api.nvim_create_user_command(
+    "ToggleDiagnostic",
+    function()
+        local config = vim.diagnostic.config
+        local vt = config().virtual_text
+        config {
+            virtual_text = not vt,
+            underline = not vt,
+            signs = not vt,
+        }
+    end,
+    {
+        desc = "Toggle diagnostics"
+    }
+)
+

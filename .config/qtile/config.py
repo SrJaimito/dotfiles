@@ -2,6 +2,7 @@ from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from libqtile.log_utils import logger
 
 import os
 import subprocess
@@ -9,8 +10,34 @@ import subprocess
 # mod = Windows key
 mod = 'mod4'
 
-# Terminal
+# Preferred apps
 terminal = os.path.expanduser('~/.local/kitty.app/bin/kitty')
+browser = 'google-chrome'
+mail_client = 'thunderbird'
+pdf_viewer = 'okular'
+spotify = 'spotify'
+discord = 'discord'
+notes_app = 'obsidian'
+
+
+def mod_return_handler(qtile):
+    current_group = qtile.current_screen.group.info()['name']
+
+    if current_group == '3':
+        qtile.spawn(notes_app)
+    elif current_group == '4':
+        qtile.spawn(browser)
+    elif current_group == '5':
+        qtile.spawn(mail_client)
+    elif current_group == '6':
+        qtile.spawn(pdf_viewer)
+    elif current_group == '8':
+        qtile.spawn(spotify)
+    elif current_group == '0':
+        qtile.spawn(discord)
+    else:
+        qtile.spawn(terminal)
+
 
 keys = [
     # Switch between windows
@@ -36,9 +63,9 @@ keys = [
     Key([mod, 'shift'], 'Return', lazy.layout.toggle_split(), desc='Toggle between split and unsplit sides of stack'),
 
     # Launch terminal
-    Key([mod], 'Return', lazy.spawn(terminal), desc='Launch terminal'),
+    Key(['control', 'mod1'], 't', lazy.spawn(terminal)),
 
-    # Toggle between layots
+    # Toggle between layouts
     Key([mod], 'Tab', lazy.next_layout(), desc='Toggle between layouts'),
 
     # Kill current window
@@ -52,13 +79,17 @@ keys = [
 
     # Reload and shutdown Qtile
     Key([mod, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
-    Key([mod, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
+    # Key([mod, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
+    Key([mod, 'control'], 'q', lazy.spawn('systemctl suspend')),
 
     # Run command
     Key([mod], 'r', lazy.spawncmd(), desc='Spawn a command using a prompt widget'),
 
     # Spawn rofi
-    Key([mod], 'space', lazy.spawn('rofi -show drun'))
+    Key([mod], 'space', lazy.spawn('rofi -show drun')),
+
+    # Spawn preferred app depending on active group
+    Key([mod], 'Return', lazy.function(mod_return_handler))
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -76,12 +107,16 @@ for vt in range(1, 8):
 
 
 groups = [
-    Group('1', label = '\uf121'),   # Dev
-    Group('2', label = '\uf120'),   # Terminal
-    Group('3', label = '\uf269'),   # Firefox
-    Group('4', label = '\uf42f'),   # Mail
-    Group('5', label = '\uf198'),   # Slack
-    Group('6', label = '\uf1bc')    # Spotify
+    Group('1', label = '\uf120'),       # Terminal
+    Group('2', label = '\uf121'),       # Dev
+    Group('3', label = '\uebaf'),       # Notes
+    Group('4', label = '\uf268'),       # Web
+    Group('5', label = '\uf42f'),       # Mail
+    Group('6', label = '\ue67d'),       # PDF Viewer
+    Group('7', label = '\ue69b'),       # LaTeX
+    Group('8', label = '\uf1bc'),       # Spotify
+    Group('9', label = '\uf198'),       # Slack
+    Group('0', label = '\U000f066f'),   # Discord
 ]
 
 for i in groups:
@@ -108,6 +143,12 @@ for i in groups:
         ]
     )
 
+keys.extend([
+    Key([mod], 'Right', lazy.screen.next_group()),
+    Key([mod], 'Left', lazy.screen.prev_group())
+])
+
+
 BORDER_WIDTH = 2
 SINGLE_BORDER_WIDTH = 2
 
@@ -115,7 +156,7 @@ BORDER_COLOR = '#24273A'
 BORDER_COLOR_FOCUS = '#FAB387'
 
 WINDOW_MARGIN = 10
-SINGLE_WINDOW_MARGIN = 20
+SINGLE_WINDOW_MARGIN = 10
 
 COMMON_LAYOUT_SETTINGS = {
     'border_width': BORDER_WIDTH,
@@ -155,13 +196,13 @@ screens = [
     Screen(
         top = bar.Bar(
             [
+                widget.Spacer(length = 10),
                 widget.TextBox(
                     text = '\uebc9',
                     foreground = GROUP_SELECT_BACKGROUND,
-                    fontsize = 36,
-                    padding = 10
+                    fontsize = 36
                 ),
-                widget.Spacer(length = 20),
+                widget.Spacer(length = 30),
                 widget.GroupBox(
                     highlight_method = 'block',
                     this_current_screen_border = GROUP_SELECT_BACKGROUND,
@@ -174,33 +215,51 @@ screens = [
                     block_highlight_text_color = BAR_FOREGROUND_DARK,
                     fontsize = 36,
                     margin_x = 0,
-                    padding_x = 10
+                    padding_x = 10,
+                    urgent_border = None,
+                    urgent_text = BAR_FOREGROUND_LIGHT
                 ),
+                widget.Spacer(length = 30),
                 widget.WindowName(foreground = BAR_FOREGROUND_LIGHT),
-                # widget.Systray(),
+                widget.Spacer(length = 30),
+                widget.TextBox(
+                    text = '\uf241',
+                    foreground = BAR_FOREGROUND_LIGHT,
+                    fontsize = 24
+                ),
+                widget.Spacer(length = 10),
+                widget.Battery(
+                    foreground = BAR_FOREGROUND_LIGHT,
+                    low_foreground = '#F38BA8'
+                ),
+                widget.Spacer(length = 15),
+                widget.TextBox(
+                    text = '\uf028',
+                    foreground = BAR_FOREGROUND_LIGHT,
+                    fontsize = 24
+                ),
+                widget.Spacer(length = 10),
+                widget.PulseVolume(foreground = BAR_FOREGROUND_LIGHT),
+                widget.Spacer(length = 15),
                 widget.TextBox(
                     text = '\uf017',
                     foreground = BAR_FOREGROUND_LIGHT,
                     fontsize = 24
                 ),
+                widget.Spacer(length = 10),
                 widget.Clock(
-                    format = '%H:%M',
-                    foreground = BAR_FOREGROUND_LIGHT,
-                    padding = 10
+                    format = '%H:%M - %d/%m/%Y',
+                    foreground = BAR_FOREGROUND_LIGHT
                 ),
-                widget.Spacer(length = 20),
-                widget.TextBox(
-                    text = '\uf455',
+                widget.Spacer(length = 15),
+                widget.QuickExit(
                     foreground = BAR_FOREGROUND_LIGHT,
-                    fontsize = 24
+                    default_text = '\uf011',
+                    fontsize = 24,
+                    countdown_format = '{}',
+                    countdown_start = 3,
                 ),
-                widget.Clock(
-                    format = '%d/%m/%Y',
-                    foreground = BAR_FOREGROUND_LIGHT,
-                    padding = 10
-                ),
-                widget.Spacer(length = 20),
-                widget.QuickExit(**COMMON_WIDGET_SETTINGS),
+                widget.Spacer(length = 10)
             ],
             36,
             background = BAR_BACKGROUND,
@@ -223,7 +282,14 @@ follow_mouse_focus = True
 bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
+
+# Floating window configuration
+FLOATING_LAYOUT_BORDER_COLOR = '#f38BA8'
+
 floating_layout = layout.Floating(
+    border_focus = FLOATING_LAYOUT_BORDER_COLOR,
+    border_normal = FLOATING_LAYOUT_BORDER_COLOR,
+    border_width = BORDER_WIDTH,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
@@ -233,8 +299,10 @@ floating_layout = layout.Floating(
         Match(wm_class='ssh-askpass'),  # ssh-askpass
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
+        Match(wm_class = 'org.gnome.Nautilus')
     ]
 )
+
 auto_fullscreen = True
 focus_on_window_activation = 'smart'
 reconfigure_screens = True
