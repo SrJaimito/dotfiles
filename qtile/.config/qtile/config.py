@@ -11,9 +11,9 @@ import subprocess
 mod = 'mod4'
 
 # Preferred apps
-terminal = os.path.expanduser('~/.local/kitty.app/bin/kitty')
+terminal = 'alacritty'
 browser = 'google-chrome'
-mail_client = 'thunderbird'
+mail_client = os.path.expanduser('~/thunderbird/thunderbird')
 pdf_viewer = 'okular'
 spotify = 'spotify'
 discord = 'discord'
