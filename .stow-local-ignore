@@ -22,4 +22,5 @@ _darcs
 ^/COPYING
 
 # Stow local ignore modifications
-prompt
+bash
+

@@ -55,6 +55,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins')
 
+    ---------------------
+    -- Custom commands --
+    ---------------------
+
 vim.api.nvim_create_user_command(
     "ToggleDiagnostic",
     function()

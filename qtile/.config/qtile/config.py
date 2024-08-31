@@ -4,40 +4,28 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile.log_utils import logger
 
+from qtile_extras import widget as widget_extra
+from qtile_extras.widget.decorations import RectDecoration
+
 import os
 import subprocess
+
+from colors import catppuccin
+import custom_widgets
 
 # mod = Windows key
 mod = 'mod4'
 
 # Preferred apps
-terminal = 'alacritty'
-browser = 'google-chrome'
-mail_client = os.path.expanduser('~/thunderbird/thunderbird')
-pdf_viewer = 'okular'
-spotify = 'spotify'
-discord = 'discord'
-notes_app = 'obsidian'
+terminal = os.path.expanduser('~/.local/kitty.app/bin/kitty')
+
+# Are we running on a laptop with battery
+is_laptop = os.path.exists('/sys/module/battery')
 
 
-def mod_return_handler(qtile):
-    current_group = qtile.current_screen.group.info()['name']
-
-    if current_group == '3':
-        qtile.spawn(notes_app)
-    elif current_group == '4':
-        qtile.spawn(browser)
-    elif current_group == '5':
-        qtile.spawn(mail_client)
-    elif current_group == '6':
-        qtile.spawn(pdf_viewer)
-    elif current_group == '8':
-        qtile.spawn(spotify)
-    elif current_group == '0':
-        qtile.spawn(discord)
-    else:
-        qtile.spawn(terminal)
-
+#####################
+# Keyboard Mappings #
+#####################
 
 keys = [
     # Switch between windows
@@ -59,11 +47,8 @@ keys = [
     Key([mod, 'control'], 'k', lazy.layout.grow_up(), desc='Grow window up'),
     Key([mod], 'n', lazy.layout.normalize(), desc='Reset all window sizes'),
 
-    # ???
-    Key([mod, 'shift'], 'Return', lazy.layout.toggle_split(), desc='Toggle between split and unsplit sides of stack'),
-
     # Launch terminal
-    Key(['control', 'mod1'], 't', lazy.spawn(terminal)),
+    Key([mod, 'shift'], 'Return', lazy.spawn(terminal)),
 
     # Toggle between layouts
     Key([mod], 'Tab', lazy.next_layout(), desc='Toggle between layouts'),
@@ -87,9 +72,19 @@ keys = [
 
     # Spawn rofi
     Key([mod], 'space', lazy.spawn('rofi -show drun')),
+    Key([mod, 'shift'], 'space', lazy.spawn('rofi -dmenu')),
 
     # Spawn preferred app depending on active group
-    Key([mod], 'Return', lazy.function(mod_return_handler))
+    Key([mod], 'Return', lazy.spawn(terminal)),
+
+    # Control audio volume
+    Key([], 'XF86AudioRaiseVolume', lazy.spawn('amixer -D pulse set Master 2%+')),
+    Key([], 'XF86AudioLowerVolume', lazy.spawn('amixer -D pulse set Master 2%-')),
+    Key([], 'XF86AudioMute', lazy.spawn('amixer -D pulse set Master toggle')),
+
+    # Control monitor brightness
+    Key([], 'XF86MonBrightnessUp', lazy.spawn('brightnessctl set +10%')),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn('brightnessctl set 10%-')),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -106,42 +101,17 @@ for vt in range(1, 8):
     )
 
 
-groups = [
-    Group('1', label = '\uf120'),       # Terminal
-    Group('2', label = '\uf121'),       # Dev
-    Group('3', label = '\uebaf'),       # Notes
-    Group('4', label = '\uf268'),       # Web
-    Group('5', label = '\uf42f'),       # Mail
-    Group('6', label = '\ue67d'),       # PDF Viewer
-    Group('7', label = '\ue69b'),       # LaTeX
-    Group('8', label = '\uf1bc'),       # Spotify
-    Group('9', label = '\uf198'),       # Slack
-    Group('0', label = '\U000f066f'),   # Discord
-]
+##########
+# Groups #
+##########
 
-for i in groups:
-    keys.extend(
-        [
-            # mod + group number = switch to group
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc='Switch to group {}'.format(i.name),
-            ),
-            # mod + shift + group number = switch to & move focused window to group
-            Key(
-                [mod, 'shift'],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc='Switch to & move focused window to group {}'.format(i.name),
-            ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod + shift + group number = move focused window to group
-            # Key([mod, 'shift'], i.name, lazy.window.togroup(i.name),
-            #     desc='move focused window to group {}'.format(i.name)),
-        ]
-    )
+groups = [Group(name = str(i), label = '\uf444') for i in range(1, 10)]
+
+for group in groups:
+    keys.extend([
+        Key([mod], group.name, lazy.group[group.name].toscreen()),
+        Key([mod, 'shift'], group.name, lazy.window.togroup(group.name, switch_group = True)),
+    ])
 
 keys.extend([
     Key([mod], 'Right', lazy.screen.next_group()),
@@ -149,14 +119,18 @@ keys.extend([
 ])
 
 
+###########
+# Layouts #
+###########
+
 BORDER_WIDTH = 2
-SINGLE_BORDER_WIDTH = 2
+SINGLE_BORDER_WIDTH = 0
 
-BORDER_COLOR = '#24273A'
-BORDER_COLOR_FOCUS = '#FAB387'
+BORDER_COLOR = catppuccin['mocha']['base']
+BORDER_COLOR_FOCUS = catppuccin['mocha']['sky']
 
-WINDOW_MARGIN = 10
-SINGLE_WINDOW_MARGIN = 10
+WINDOW_MARGIN = 5
+SINGLE_WINDOW_MARGIN = 5
 
 COMMON_LAYOUT_SETTINGS = {
     'border_width': BORDER_WIDTH,
@@ -171,100 +145,179 @@ layouts = [
     layout.MonadTall(**COMMON_LAYOUT_SETTINGS)
 ]
 
+
+#######
+# BAR #
+#######
+
+BAR_BG = catppuccin['mocha']['base']
+BAR_FG_LIGHT = catppuccin['mocha']['text']
+
+BAR_HEIGHT = 35
+BAR_MARGINS = [0, 0, 0, 0]
+
+BAR_RIGHT_LEFT_SPACE = 10
+BAR_SPACE_BETWEEN_WIDGETS = 15
+BAR_WIDGET_ICON_SPACE = 3
+
 widget_defaults = dict(
     font = 'JetBrainsMono Nerd Font Mono',
     fontsize = 14,
-    padding = 3
+    padding = 5,
+    foreground = BAR_FG_LIGHT
 )
 extension_defaults = widget_defaults.copy()
 
+top_bar_widgets = [
+    widget.Spacer(
+        length = BAR_RIGHT_LEFT_SPACE
+    ),
 
-BAR_FOREGROUND_LIGHT = '#CDD6f4'
-BAR_FOREGROUND_DARK = '#1E1E2E'
+    widget.TextBox(
+        text = '\uebc9',
+        foreground = BAR_FG_LIGHT,
+        fontsize = 38
+    ),
 
-BAR_BACKGROUND = '#585B70'
+    widget.Spacer(
+        length = BAR_SPACE_BETWEEN_WIDGETS
+    ),
 
-BAR_MARGINS = [0, 0, 0, 0]
+    custom_widgets.DotGroupBox(
+        fontsize = 24,
+        decorations = [
+            RectDecoration(
+                radius = 11.5,
+                padding = 6,
+                colour = catppuccin['mocha']['surface_1'],
+                filled = True
+            )
+        ]
+    ),
 
-GROUP_SELECT_BACKGROUND = '#FAB387'
+    widget.Spacer(
+        length = BAR_SPACE_BETWEEN_WIDGETS
+    ),
 
-COMMON_WIDGET_SETTINGS = {
-    'foreground': '#000000'
-}
+    widget.TextBox(
+        text = '\uebeb',
+        foreground = BAR_FG_LIGHT,
+        fontsize = 24
+    ),
+
+    widget.Spacer(
+        length = BAR_WIDGET_ICON_SPACE
+    ),
+
+    widget.CurrentLayout(
+        foreground = BAR_FG_LIGHT
+    ),
+
+    widget.Spacer(length = bar.STRETCH),
+
+    widget.Systray(),
+
+    widget.Spacer(
+        length = BAR_SPACE_BETWEEN_WIDGETS
+    ),
+
+    custom_widgets.WlanIcon(
+        update_interval = 5,
+        fontsize = 24
+    ),
+
+    widget.Spacer(
+        length = BAR_WIDGET_ICON_SPACE
+    ),
+    
+    custom_widgets.WlanInfo(
+        update_interval = 5
+    ),
+    
+    widget.Spacer(
+        length = BAR_SPACE_BETWEEN_WIDGETS
+    ),
+
+    widget.TextBox(
+        text = '\uf028',
+        foreground = BAR_FG_LIGHT,
+        fontsize = 24
+    ),
+
+    widget.Spacer(
+        length = BAR_WIDGET_ICON_SPACE
+    ),
+
+    widget.PulseVolume(
+        foreground = BAR_FG_LIGHT
+    ),
+
+    widget.Spacer(
+        length = BAR_SPACE_BETWEEN_WIDGETS
+    ),
+
+    custom_widgets.MacosClock(
+        foreground = BAR_FG_LIGHT
+    ),
+
+    widget.Spacer(
+        length = BAR_SPACE_BETWEEN_WIDGETS
+    ),
+
+    widget.QuickExit(
+        foreground = BAR_FG_LIGHT,
+        default_text = '\uf011',
+        fontsize = 24,
+        countdown_format = '{}',
+        countdown_start = 3,
+    ),
+
+    widget.Spacer(
+        length = BAR_RIGHT_LEFT_SPACE
+    )
+]
+
+if is_laptop:
+    battery_widgets = [
+        widget.TextBox(
+            text = '\uf241',
+            foreground = BAR_FG_LIGHT,
+            fontsize = 24
+        ),
+
+        widget.Spacer(
+            length = BAR_WIDGET_ICON_SPACE
+        ),
+
+        widget.Battery(
+            format = '{percent:2.0%}',
+            foreground = BAR_FG_LIGHT,
+            low_foreground = catppuccin['mocha']['red']
+        ),
+        
+        widget.Spacer(
+            length = BAR_SPACE_BETWEEN_WIDGETS
+        )
+    ]
+
+    top_bar_widgets[-12:-12] = battery_widgets
+
+# bottom_bar_widgets = []
 
 screens = [
     Screen(
         top = bar.Bar(
-            [
-                widget.Spacer(length = 10),
-                widget.TextBox(
-                    text = '\uebc9',
-                    foreground = GROUP_SELECT_BACKGROUND,
-                    fontsize = 36
-                ),
-                widget.Spacer(length = 30),
-                widget.GroupBox(
-                    highlight_method = 'block',
-                    this_current_screen_border = GROUP_SELECT_BACKGROUND,
-                    this_screen_border = GROUP_SELECT_BACKGROUND,
-                    other_current_screen_border = None,
-                    other_screen_border = None,
-                    foreground = BAR_FOREGROUND_LIGHT,
-                    inactive = BAR_FOREGROUND_LIGHT,
-                    active = BAR_FOREGROUND_LIGHT,
-                    block_highlight_text_color = BAR_FOREGROUND_DARK,
-                    fontsize = 36,
-                    margin_x = 0,
-                    padding_x = 10,
-                    urgent_border = None,
-                    urgent_text = BAR_FOREGROUND_LIGHT
-                ),
-                widget.Spacer(length = 30),
-                widget.WindowName(foreground = BAR_FOREGROUND_LIGHT),
-                widget.Spacer(length = 30),
-                widget.TextBox(
-                    text = '\uf241',
-                    foreground = BAR_FOREGROUND_LIGHT,
-                    fontsize = 24
-                ),
-                widget.Spacer(length = 10),
-                widget.Battery(
-                    foreground = BAR_FOREGROUND_LIGHT,
-                    low_foreground = '#F38BA8'
-                ),
-                widget.Spacer(length = 15),
-                widget.TextBox(
-                    text = '\uf028',
-                    foreground = BAR_FOREGROUND_LIGHT,
-                    fontsize = 24
-                ),
-                widget.Spacer(length = 10),
-                widget.PulseVolume(foreground = BAR_FOREGROUND_LIGHT),
-                widget.Spacer(length = 15),
-                widget.TextBox(
-                    text = '\uf017',
-                    foreground = BAR_FOREGROUND_LIGHT,
-                    fontsize = 24
-                ),
-                widget.Spacer(length = 10),
-                widget.Clock(
-                    format = '%H:%M - %d/%m/%Y',
-                    foreground = BAR_FOREGROUND_LIGHT
-                ),
-                widget.Spacer(length = 15),
-                widget.QuickExit(
-                    foreground = BAR_FOREGROUND_LIGHT,
-                    default_text = '\uf011',
-                    fontsize = 24,
-                    countdown_format = '{}',
-                    countdown_start = 3,
-                ),
-                widget.Spacer(length = 10)
-            ],
-            36,
-            background = BAR_BACKGROUND,
+            top_bar_widgets,
+            BAR_HEIGHT,
+            background = BAR_BG,
             margin = BAR_MARGINS
-        )
+        ),
+        # bottom = bar.Bar(
+        #     bottom_bar_widgets,
+        #     BAR_HEIGHT,
+        #     background = BAR_BG,
+        #     margin = BAR_MARGINS
+        # )
     )
 ]
 
@@ -299,7 +352,9 @@ floating_layout = layout.Floating(
         Match(wm_class='ssh-askpass'),  # ssh-askpass
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
-        Match(wm_class = 'org.gnome.Nautilus')
+        Match(wm_class = 'org.gnome.Nautilus'),
+        # Match(wm_class = 'STM32CubeIDE', title = 'Preferences ')
+        Match(wm_class = 'Msgcompose'),
     ]
 )
 

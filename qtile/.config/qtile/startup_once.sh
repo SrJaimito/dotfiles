@@ -8,5 +8,5 @@ setxkbmap -layout es
 picom -b
 
 # Set background
-feh --bg-fill ~/Documents/wallpapers/cat_colors.png
+feh --bg-fill ~/Documents/wallpapers/ubuntu-magenta-blue-1920x1080.png
 
