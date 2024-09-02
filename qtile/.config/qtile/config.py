@@ -20,7 +20,7 @@ mod = 'mod4'
 terminal = os.path.expanduser('~/.local/kitty.app/bin/kitty')
 
 # Are we running on a laptop with battery
-is_laptop = os.path.exists('/sys/module/battery')
+is_laptop = os.path.exists('/sys/class/power_supply/BAT0')
 
 
 #####################
@@ -302,7 +302,51 @@ if is_laptop:
 
     top_bar_widgets[-12:-12] = battery_widgets
 
-# bottom_bar_widgets = []
+secondary_top_bar_widgets = [
+    widget.Spacer(
+        length = BAR_RIGHT_LEFT_SPACE
+    ),
+
+    widget.TextBox(
+        text = '\uebc9',
+        foreground = BAR_FG_LIGHT,
+        fontsize = 38
+    ),
+
+    widget.Spacer(
+        length = BAR_SPACE_BETWEEN_WIDGETS
+    ),
+
+    custom_widgets.DotGroupBox(
+        fontsize = 24,
+        decorations = [
+            RectDecoration(
+                radius = 11.5,
+                padding = 6,
+                colour = catppuccin['mocha']['surface_1'],
+                filled = True
+            )
+        ]
+    ),
+
+    widget.Spacer(
+        length = BAR_SPACE_BETWEEN_WIDGETS
+    ),
+
+    widget.TextBox(
+        text = '\uebeb',
+        foreground = BAR_FG_LIGHT,
+        fontsize = 24
+    ),
+
+    widget.Spacer(
+        length = BAR_WIDGET_ICON_SPACE
+    ),
+
+    widget.CurrentLayout(
+        foreground = BAR_FG_LIGHT
+    )
+]
 
 screens = [
     Screen(
@@ -311,22 +355,24 @@ screens = [
             BAR_HEIGHT,
             background = BAR_BG,
             margin = BAR_MARGINS
-        ),
-        # bottom = bar.Bar(
-        #     bottom_bar_widgets,
-        #     BAR_HEIGHT,
-        #     background = BAR_BG,
-        #     margin = BAR_MARGINS
-        # )
+        )
+    ),
+    Screen(
+        top = bar.Bar(
+            secondary_top_bar_widgets,
+            BAR_HEIGHT,
+            background = BAR_BG,
+            margin = BAR_MARGINS
+        )
     )
 ]
 
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], 'Button1', lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], 'Button3', lazy.window.set_size_floating(), start=lazy.window.get_size()),
-    Click([mod], 'Button2', lazy.window.bring_to_front()),
+Drag([mod], 'Button1', lazy.window.set_position_floating(), start=lazy.window.get_position()),
+Drag([mod], 'Button3', lazy.window.set_size_floating(), start=lazy.window.get_size()),
+Click([mod], 'Button2', lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
@@ -340,22 +386,22 @@ cursor_warp = False
 FLOATING_LAYOUT_BORDER_COLOR = '#f38BA8'
 
 floating_layout = layout.Floating(
-    border_focus = FLOATING_LAYOUT_BORDER_COLOR,
-    border_normal = FLOATING_LAYOUT_BORDER_COLOR,
-    border_width = BORDER_WIDTH,
-    float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
-        Match(wm_class='confirmreset'),  # gitk
-        Match(wm_class='makebranch'),  # gitk
-        Match(wm_class='maketag'),  # gitk
-        Match(wm_class='ssh-askpass'),  # ssh-askpass
-        Match(title='branchdialog'),  # gitk
-        Match(title='pinentry'),  # GPG key password entry
-        Match(wm_class = 'org.gnome.Nautilus'),
-        # Match(wm_class = 'STM32CubeIDE', title = 'Preferences ')
-        Match(wm_class = 'Msgcompose'),
-    ]
+border_focus = FLOATING_LAYOUT_BORDER_COLOR,
+border_normal = FLOATING_LAYOUT_BORDER_COLOR,
+border_width = BORDER_WIDTH,
+float_rules=[
+    # Run the utility of `xprop` to see the wm class and name of an X client.
+    *layout.Floating.default_float_rules,
+    Match(wm_class='confirmreset'),  # gitk
+    Match(wm_class='makebranch'),  # gitk
+    Match(wm_class='maketag'),  # gitk
+    Match(wm_class='ssh-askpass'),  # ssh-askpass
+    Match(title='branchdialog'),  # gitk
+    Match(title='pinentry'),  # GPG key password entry
+    Match(wm_class = 'org.gnome.Nautilus'),
+    # Match(wm_class = 'STM32CubeIDE', title = 'Preferences ')
+    Match(wm_class = 'Msgcompose'),
+]
 )
 
 auto_fullscreen = True
