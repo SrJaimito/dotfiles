@@ -42,9 +42,9 @@ class DotGroupBox(widget_extra.GroupBox):
             if group.screen:
                 if self.qtile.current_screen == group.screen:
                     # label = '\uf4c3'
-                    label = '\ueabc'
-                else:
                     label = '\uf192'
+                else:
+                    label = '\ueabc'
 
             if group.windows or group.screen:
                 color = GROUP_COLORS[i]
