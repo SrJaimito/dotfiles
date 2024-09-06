@@ -127,7 +127,7 @@ BORDER_WIDTH = 2
 SINGLE_BORDER_WIDTH = 0
 
 BORDER_COLOR = catppuccin['mocha']['base']
-BORDER_COLOR_FOCUS = catppuccin['mocha']['sky']
+BORDER_COLOR_FOCUS = catppuccin['mocha']['red']
 
 WINDOW_MARGIN = 5
 SINGLE_WINDOW_MARGIN = 5
