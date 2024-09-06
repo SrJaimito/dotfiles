@@ -35,11 +35,16 @@ class DotGroupBox(widget_extra.GroupBox):
         for i, group in enumerate(self.groups):
             bw = self.box_width([group])
 
-            label = '\u25cf'
+            # label = '\u25cf'
+            label = '\uf111'
             color = catppuccin['mocha']['text']
             
             if group.screen:
-                label = '\uf4c3'
+                if self.qtile.current_screen == group.screen:
+                    # label = '\uf4c3'
+                    label = '\ueabc'
+                else:
+                    label = '\uf192'
 
             if group.windows or group.screen:
                 color = GROUP_COLORS[i]
