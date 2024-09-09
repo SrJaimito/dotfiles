@@ -222,7 +222,7 @@ top_bar_widgets = [
     ),
 
     custom_widgets.WlanIcon(
-        update_interval = 5,
+        update_interval = 3,
         fontsize = 24
     ),
 
@@ -231,7 +231,7 @@ top_bar_widgets = [
     ),
     
     custom_widgets.WlanInfo(
-        update_interval = 5
+        update_interval = 3
     ),
     
     widget.Spacer(
