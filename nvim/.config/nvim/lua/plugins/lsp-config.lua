@@ -15,7 +15,7 @@ return {
                     'clangd',                       -- C/C++
                     'jedi_language_server',         -- Python
                     'rust_analyzer',                -- Rust
-                    'svlangserver',                 -- SystemVerilog
+                    'hdl_checker',                  -- VHDL, Verilog, SystemVerilog
                     'bashls',                       -- Bash
                     'ltex',                         -- LaTeX
                     'autotools_ls',                 -- Make
@@ -41,7 +41,7 @@ return {
             lspconfig.rust_analyzer.setup({
                 capabilities = capabilities
             })
-            lspconfig.svlangserver.setup({
+            lspconfig.hdl_checker.setup({
                 capabilities = capabilities
             })
             lspconfig.bashls.setup({
