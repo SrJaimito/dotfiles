@@ -6,7 +6,7 @@ return {
     config = function(opts)
         require('catppuccin').setup {
             flavour = 'mocha',
-            transparent_background = false
+            transparent_background = true
         }
 
         vim.opt.background = 'dark'
