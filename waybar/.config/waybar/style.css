@@ -1,0 +1,13 @@
+.bar {
+    font-family: JetBrainsMono Nerd Font Propo;
+    font-size: 16px;
+}
+
+#custom-os {
+    font-size: 1.5em;
+    margin-left: 10px;
+}
+
+#clock {
+    margin-right: 10px;
+}

@@ -1,0 +1,54 @@
+{
+    /////////////
+    // GENERAL //
+    /////////////
+
+    "name": "bar",
+    "layer": "top",
+    "position": "top",
+    "spacing": 20,
+
+    /////////////////////////
+    // MODULE DISTRIBUTION //
+    /////////////////////////
+
+    "modules-left": [
+        "custom/os"
+    ],
+
+    "modules-center": [
+        "hyprland/window"
+    ],
+
+    "modules-right": [
+        "battery",
+        "pulseaudio",
+        "clock"
+    ],
+
+    ////////////////////
+    // MODULE OPTIONS //
+    ////////////////////
+
+    "custom/os": {
+        "format": "\uef72"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "pulseaudio": {
+        // "format": "<span font='20'>{icon}</span> {volume}%",
+        "format": "{icon} {volume}%",
+        "format-icons": {
+            "default": ["\uf026", "\uf027", "\uf028"],
+            "default-muted": "\ueee8"
+        }
+    },
+
+    "clock": {
+        "format": "{:%a %b %d  %H:%M}"
+    }
+}
