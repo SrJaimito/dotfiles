@@ -22,6 +22,7 @@
 
     "modules-right": [
         "battery",
+        "network",
         "pulseaudio",
         "clock"
     ],
@@ -37,6 +38,13 @@
     "battery": {
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""]
+    },
+
+    "network": {
+        "family": "ipv4",
+        "format-ethernet": "\udb80\ude00 Eth ({ipaddr})",
+        "format-wifi": "\uf1eb {essid} ({ipaddr})",
+        "format-disconnected": "\udb81\udcb4 No network"
     },
 
     "pulseaudio": {
