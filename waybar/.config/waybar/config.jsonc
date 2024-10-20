@@ -1,9 +1,14 @@
-{
+/////////////////
+// PRIMARY BAR //
+/////////////////
+
+[{
     /////////////
     // GENERAL //
     /////////////
 
-    "name": "bar",
+    "name": "primaryBar",
+    "output": "DP-2",
     "layer": "top",
     "position": "top",
     "spacing": 20,
@@ -17,8 +22,7 @@
         "hyprland/workspaces"
     ],
 
-    "modules-center": [
-    ],
+    "modules-center": [],
 
     "modules-right": [
         "battery",
@@ -58,4 +62,40 @@
     "clock": {
         "format": "{:%a %b %d  %H:%M}"
     }
-}
+},
+
+///////////////////
+// SECONDARY BAR //
+///////////////////
+
+{
+    /////////////
+    // GENERAL //
+    /////////////
+
+    "name": "secondaryBar",
+    "output": "!DP-2",
+    "layer": "top",
+    "position": "top",
+    "spacing": 20,
+
+    /////////////////////////
+    // MODULE DISTRIBUTION //
+    /////////////////////////
+
+    "modules-left": [
+        "custom/os",
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [],
+    "modules-right": [],
+
+    ////////////////////
+    // MODULE OPTIONS //
+    ////////////////////
+
+    "custom/os": {
+        "format": "\ue73a"
+    }
+}]
