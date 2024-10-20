@@ -22,13 +22,14 @@
         "hyprland/workspaces"
     ],
 
-    "modules-center": [],
+    "modules-center": [
+        "clock"
+    ],
 
     "modules-right": [
         "battery",
         "group/group-network",
-        "pulseaudio",
-        "clock"
+        "pulseaudio"
     ],
 
     ////////////////////
@@ -37,6 +38,10 @@
 
     "custom/os": {
         "format": "\ue73a"
+    },
+
+    "clock": {
+        "format": "{:%a %b %d  %H:%M}"
     },
 
     "battery": {
@@ -71,10 +76,6 @@
             "default": ["\uf026", "\uf027", "\uf028"],
             "default-muted": "\ueee8"
         }
-    },
-
-    "clock": {
-        "format": "{:%a %b %d  %H:%M}"
     }
 },
 
