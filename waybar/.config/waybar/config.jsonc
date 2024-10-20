@@ -61,7 +61,7 @@
 
     "network#addr": {
         "family": "ipv4",
-        "format": " - IP: {ipaddr}",
+        "format": " | {ipaddr}",
         "format-disconnected": ""
     },
 
