@@ -9,6 +9,10 @@ window#waybar {
     color: #cdd6f4;
 }
 
+#workspaces button {
+    color: #cdd6f4;
+}
+
 #custom-os {
     font-size: 28px;
     margin-left: 10px;

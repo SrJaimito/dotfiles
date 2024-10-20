@@ -13,7 +13,8 @@
     /////////////////////////
 
     "modules-left": [
-        "custom/os"
+        "custom/os",
+        "hyprland/workspaces"
     ],
 
     "modules-center": [
