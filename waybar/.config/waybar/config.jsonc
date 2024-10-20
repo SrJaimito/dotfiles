@@ -26,7 +26,7 @@
 
     "modules-right": [
         "battery",
-        "network",
+        "group/group-network",
         "pulseaudio",
         "clock"
     ],
@@ -44,11 +44,25 @@
         "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
     },
 
-    "network": {
+    "group/group-network": {
+        "orientation": "inherit",
+        "modules": ["network#base", "network#addr"],
+        "drawer": {
+            "transition-left-to-right": true
+        }
+    },
+
+    "network#base": {
         "family": "ipv4",
-        "format-ethernet": "\udb80\ude00 Eth ({ipaddr})",
-        "format-wifi": "\uf1eb {essid} ({ipaddr})",
+        "format-ethernet": "\udb80\ude00 Eth",
+        "format-wifi": "\uf1eb {essid}",
         "format-disconnected": "\udb81\udcb4 No network"
+    },
+
+    "network#addr": {
+        "family": "ipv4",
+        "format": " - IP: {ipaddr}",
+        "format-disconnected": ""
     },
 
     "pulseaudio": {
