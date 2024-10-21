@@ -29,7 +29,8 @@
     "modules-right": [
         "battery",
         "group/group-network",
-        "pulseaudio"
+        "pulseaudio",
+        "group/group-power"
     ],
 
     ////////////////////
@@ -57,17 +58,17 @@
         }
     },
 
+    "network#addr": {
+        "family": "ipv4",
+        "format": "{ipaddr} | ",
+        "format-disconnected": ""
+    },
+
     "network#base": {
         "family": "ipv4",
         "format-ethernet": "\udb80\ude00 Eth",
         "format-wifi": "\uf1eb {essid}",
         "format-disconnected": "\udb81\udcb4 No network"
-    },
-
-    "network#addr": {
-        "family": "ipv4",
-        "format": "{ipaddr} | ",
-        "format-disconnected": ""
     },
 
     "pulseaudio": {
@@ -76,6 +77,38 @@
             "default": ["\uf026", "\uf027", "\uf028"],
             "default-muted": "\ueee8"
         }
+    },
+
+    "group/group-power": {
+        "orientation": "inherit",
+        "modules": ["custom/power", "custom/quit", "custom/lock", "custom/reboot"],
+        "drawer": {
+            "transition-left-to-right": false
+        }
+    },
+
+    "custom/quit": {
+        "format": "\udb83\udfc5",
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exit"
+    },
+
+    "custom/lock": {
+        "format": "\udb80\udf41",
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exec hyprlock"
+    },
+
+    "custom/reboot": {
+        "format": "\uead2",
+        "tooltip": false,
+        "on-click": "reboot"
+    },
+
+    "custom/power": {
+        "format": "\uf011",
+        "tooltip": false,
+        "on-click": "shutdown now"
     }
 },
 
