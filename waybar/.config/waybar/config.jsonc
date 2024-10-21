@@ -38,16 +38,19 @@
     ////////////////////
 
     "custom/os": {
-        "format": "\ue73a"
+        "format": "\ue73a",
+        "tooltip": false
     },
 
     "clock": {
-        "format": "{:%a %b %d  %H:%M}"
+        "format": "{:%a %b %d  %H:%M}",
+        "tooltip": false
     },
 
     "battery": {
         "format": "{icon} {capacity}%",
-        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"]
+        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+        "tooltip": false
     },
 
     "group/group-network": {
@@ -61,14 +64,16 @@
     "network#addr": {
         "family": "ipv4",
         "format": "{ipaddr} | ",
-        "format-disconnected": ""
+        "format-disconnected": "",
+        "tooltip": false
     },
 
     "network#base": {
         "family": "ipv4",
         "format-ethernet": "\udb80\ude00 Eth",
         "format-wifi": "\uf1eb {essid}",
-        "format-disconnected": "\udb81\udcb4 No network"
+        "format-disconnected": "\udb81\udcb4 No network",
+        "tooltip": false
     },
 
     "pulseaudio": {
@@ -144,6 +149,7 @@
     ////////////////////
 
     "custom/os": {
-        "format": "\ue73a"
+        "format": "\ue73a",
+        "tooltip": false
     }
 }]
