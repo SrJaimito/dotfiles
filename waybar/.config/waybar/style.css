@@ -8,9 +8,16 @@ window#waybar {
     color: #cdd6f4;
 }
 
+.modules-left {
+    background: rgb(30, 30, 46);
+    border: 1px solid #cdd6f4;
+    margin-left: 20px;
+    padding: 0 20px 0 10px;
+    border-radius: 19px;
+}
+
 #custom-os {
     font-size: 28px;
-    margin-left: 20px;
 }
 
 #workspaces button {
@@ -50,9 +57,7 @@ window#waybar {
     background: rgb(30, 30, 46);
     border: 1px solid #cdd6f4;
     margin-right: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-right: 20px;
+    padding: 0 12px;
     border-radius: 19px;
 }
 
