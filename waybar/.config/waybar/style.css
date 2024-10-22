@@ -4,17 +4,34 @@
 }
 
 window#waybar {
-    background-color: #1e1e2e;
-    color: #cdd6f4;
-}
-
-#workspaces button {
+    background-color: rgba(30, 30, 46, 0.0);
     color: #cdd6f4;
 }
 
 #custom-os {
     font-size: 28px;
     margin-left: 20px;
+}
+
+#workspaces button {
+    color: #cdd6f4;
+}
+
+#clock {
+    background: rgb(30, 30, 46);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 50px;
+    border: 1px solid #cdd6f4;
+}
+
+#group-power {
+    background: rgb(30, 30, 46);
+    border: 1px solid #cdd6f4;
+    margin-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 50px;
 }
 
 #custom-quit {
@@ -33,6 +50,5 @@ window#waybar {
 }
 
 #custom-power {
-    margin-right: 20px;
     color: #f38ba8;
 }
