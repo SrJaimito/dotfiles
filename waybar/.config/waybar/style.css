@@ -10,7 +10,7 @@ window#waybar {
 
 .modules-left {
     background: rgb(30, 30, 46);
-    border: 1px solid #cdd6f4;
+    border: 2px solid #cdd6f4;
     margin-left: 10px;
     padding: 0 20px 0 10px;
     border-radius: 19px;
@@ -29,12 +29,12 @@ window#waybar {
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 19px;
-    border: 1px solid #cdd6f4;
+    border: 2px solid #cdd6f4;
 }
 
 #group-info {
     background: rgb(30, 30, 46);
-    border: 1px solid #cdd6f4;
+    border: 2px solid #cdd6f4;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 19px;
@@ -55,7 +55,7 @@ window#waybar {
 
 #group-power {
     background: rgb(30, 30, 46);
-    border: 1px solid #cdd6f4;
+    border: 2px solid #cdd6f4;
     margin-right: 10px;
     padding: 0 12px;
     border-radius: 19px;
