@@ -29,9 +29,7 @@
     ],
 
     "modules-right": [
-        "battery",
-        "group/group-network",
-        "pulseaudio",
+        "group/group-info",
         "group/group-power"
     ],
 
@@ -47,6 +45,15 @@
     "clock": {
         "format": "{:%a %b %d  %H:%M}",
         "tooltip": false
+    },
+
+    "group/group-info": {
+        "orientation": "inherit",
+        "modules": [
+            "battery",
+            "group/group-network",
+            "pulseaudio"
+        ]
     },
 
     "battery": {

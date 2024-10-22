@@ -25,12 +25,34 @@ window#waybar {
     border: 1px solid #cdd6f4;
 }
 
+#group-info {
+    background: rgb(30, 30, 46);
+    border: 1px solid #cdd6f4;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 19px;
+}
+
+#battery {
+    margin-right: 10px;
+}
+
+#group-network {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#pulseaudio {
+    margin-left: 10px;
+}
+
 #group-power {
     background: rgb(30, 30, 46);
     border: 1px solid #cdd6f4;
     margin-right: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 20px;
     border-radius: 19px;
 }
 
