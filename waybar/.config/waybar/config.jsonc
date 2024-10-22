@@ -11,7 +11,7 @@
     "output": "DP-2",
     "layer": "top",
     "position": "top",
-    "height": 20,
+    "height": 38,
     "margin": "10px 0px 0px 0px",
     "spacing": 20,
 
@@ -88,7 +88,13 @@
 
     "group/group-power": {
         "orientation": "inherit",
-        "modules": ["custom/power", "custom/quit", "custom/lock", "custom/reboot"],
+        "modules": [
+            "custom/power",
+            "custom/quit",
+            "custom/lock",
+            "custom/reboot",
+            "custom/separator"
+        ],
         "drawer": {
             "transition-left-to-right": false
         }
@@ -110,6 +116,11 @@
         "format": "\uead2",
         "tooltip": false,
         "on-click": "reboot"
+    },
+
+    "custom/separator": {
+        "format": " | ",
+        "tooltip": false
     },
 
     "custom/power": {
