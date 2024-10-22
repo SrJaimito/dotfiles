@@ -11,6 +11,7 @@
     "output": "DP-2",
     "layer": "top",
     "position": "top",
+    "height": 20,
     "margin": "10px 0px 0px 0px",
     "spacing": 20,
 
