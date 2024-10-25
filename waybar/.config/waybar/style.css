@@ -12,16 +12,18 @@ window#waybar {
     background: rgb(30, 30, 46);
     border: 2px solid #cdd6f4;
     margin-left: 10px;
-    padding: 0 20px 0 10px;
+    padding: 0 20px;
     border-radius: 19px;
-}
-
-#custom-os {
-    font-size: 28px;
 }
 
 #workspaces button {
     color: #cdd6f4;
+    padding: 0;
+}
+
+#workspaces button.visible {
+    background-color: #cdd6f4;
+    color: rgb(30, 30, 46);
 }
 
 #clock {
@@ -57,7 +59,7 @@ window#waybar {
     background: rgb(30, 30, 46);
     border: 2px solid #cdd6f4;
     margin-right: 10px;
-    padding: 0 12px;
+    padding: 0 20px;
     border-radius: 19px;
 }
 
