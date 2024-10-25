@@ -20,6 +20,7 @@
 
     "modules-left": [
         "custom/os",
+        "custom/os-separator",
         "hyprland/workspaces"
     ],
 
@@ -38,6 +39,11 @@
 
     "custom/os": {
         "format": "\uef72",
+        "tooltip": false
+    },
+
+    "custom/os-separator": {
+        "format": "|",
         "tooltip": false
     },
 
