@@ -29,6 +29,7 @@
     ],
 
     "modules-right": [
+        "tray",
         "group/group-info",
         "group/group-power"
     ],
@@ -51,6 +52,8 @@
         "format": "{:%a %b %d | %H:%M}",
         "tooltip": false
     },
+
+    "tray": {},
 
     "group/group-info": {
         "orientation": "inherit",

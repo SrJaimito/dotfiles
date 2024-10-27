@@ -34,6 +34,13 @@ window#waybar {
     border: 2px solid #cdd6f4;
 }
 
+#tray {
+    background: rgb(30, 30, 46);
+    padding: 0 20px;
+    border-radius: 19px;
+    border: 2px solid #cdd6f4;
+}
+
 #group-info {
     background: rgb(30, 30, 46);
     border: 2px solid #cdd6f4;
