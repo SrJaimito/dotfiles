@@ -20,6 +20,7 @@ return {
                     'ltex',                         -- LaTeX
                     'autotools_ls',                 -- Make
                     'marksman',                     -- Markdown
+                    'verible'                       -- Verilog/SystemVerilog
                 }
             }
         end
@@ -42,6 +43,9 @@ return {
                 capabilities = capabilities
             })
             lspconfig.vhdl_ls.setup({
+                capabilities = capabilities
+            })
+            lspconfig.verible.setup({
                 capabilities = capabilities
             })
             lspconfig.bashls.setup({
