@@ -10,12 +10,11 @@ window#waybar {
 
 .modules-left {
     background: rgb(30, 30, 46);
-    margin-left: 10px;
     padding: 0 20px;
     border-color: #cdd6f4;
     border-style: solid;
-    border-width: 0 2px 2px 2px;
-    border-radius: 0 0 15px 15px;
+    border-width: 0 2px 2px 0;
+    border-radius: 0 0 15px 0;
 }
 
 #workspaces button {
@@ -72,12 +71,11 @@ window#waybar {
 
 #group-power {
     background: rgb(30, 30, 46);
-    margin-right: 10px;
     padding: 0 20px;
     border-color: #cdd6f4;
     border-style: solid;
-    border-width: 0 2px 2px 2px;
-    border-radius: 0 0 15px 15px;
+    border-width: 0 0 2px 2px;
+    border-radius: 0 0 0 15px;
 }
 
 #custom-quit {
