@@ -39,7 +39,7 @@
     ////////////////////
 
     "custom/os": {
-        "format": "\uef72",
+        "format": "\uf30a",
         "tooltip": false
     },
 
@@ -178,7 +178,7 @@
     ////////////////////
 
     "custom/os": {
-        "format": "\uef72",
+        "format": "\uf30a",
         "tooltip": false
     }
 }]
