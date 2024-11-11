@@ -167,6 +167,7 @@
 
     "modules-left": [
         "custom/os",
+        "custom/os-separator",
         "hyprland/workspaces"
     ],
 
@@ -180,5 +181,11 @@
     "custom/os": {
         "format": "\uf30a",
         "tooltip": false
+    },
+
+    "custom/os-separator": {
+        "format": "|",
+        "tooltip": false
     }
+
 }]
