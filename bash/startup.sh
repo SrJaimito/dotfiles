@@ -1,2 +1,2 @@
 fastfetch -c ~/.config/fastfetch/config.json
-echo ""
+echo -e "\n"
