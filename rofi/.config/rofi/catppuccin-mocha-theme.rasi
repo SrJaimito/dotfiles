@@ -1,0 +1,50 @@
+* {
+    base: #1e1e2e;
+    surface0: #313244;
+    overlay0: #6c7086;
+    text: #cdd6f4;
+
+    primary: #89b4fa;
+
+    background-color: @base;
+    color: @text;
+    font: "JetBrainsMono Nerd Font Mono 12";
+}
+
+window {
+    border: 2;
+    border-color: @primary;
+    border-radius: 10;
+}
+
+inputbar {
+    padding: 20;
+    border: 0 0 2 0;
+    border-color: @primary;
+}
+
+prompt {
+    enabled: false;
+}
+
+listview {
+    padding: 10 10 10 10;
+}
+
+element {
+    padding: 0 10 0 10;
+}
+
+element.alternate.normal {
+    background-color: @surface0;
+}
+
+element.selected.normal {
+    background-color: @primary;
+    text-color: @base;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+}
