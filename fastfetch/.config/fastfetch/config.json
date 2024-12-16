@@ -3,8 +3,9 @@
 
     "logo": {
         "type": "kitty",
-        "source": "~/Documents/cookie.png",
+        "source": "~/Pictures/Wallpapers/cookie.png",
         "width": 20,
+        "height": 7,
         "padding": {
             "top": 4,
             "left": 4
