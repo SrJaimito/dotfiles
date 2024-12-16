@@ -29,7 +29,7 @@ vim.opt.hlsearch = false
 -- Leader key
 vim.g.mapleader = ' '
 
--- Common mappings
+-- Custom mappings
 vim.keymap.set('n', '<leader>o', 'O<Esc>o')
 vim.keymap.set('n', '<leader>{', 'A {}<Esc>i<cr><Esc>O')
 
