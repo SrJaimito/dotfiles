@@ -1,191 +1,198 @@
-/////////////////
-// PRIMARY BAR //
-/////////////////
+[
+    /////////////////
+    // PRIMARY BAR //
+    /////////////////
 
-[{
-    /////////////
-    // GENERAL //
-    /////////////
+    {
+        /////////////
+        // GENERAL //
+        /////////////
 
-    "name": "primaryBar",
-    "output": "!eDP-1",
-    "layer": "top",
-    "position": "top",
-    "margin": "0px 0px 0px 0px",
-    "spacing": 20,
+        "name": "primaryBar",
+        "output": "DP-2",
+        "layer": "top",
+        "position": "top",
+        "margin": "0px 0px 0px 0px",
+        "spacing": 20,
 
-    /////////////////////////
-    // MODULE DISTRIBUTION //
-    /////////////////////////
+        /////////////////////////
+        // MODULE DISTRIBUTION //
+        /////////////////////////
 
-    "modules-left": [
-        "custom/os",
-        "custom/os-separator",
-        "hyprland/workspaces"
-    ],
-
-    "modules-center": [
-        "clock"
-    ],
-
-    "modules-right": [
-        "tray",
-        "group/group-info",
-        "group/group-power"
-    ],
-
-    ////////////////////
-    // MODULE OPTIONS //
-    ////////////////////
-
-    "custom/os": {
-        "format": "\uf30a",
-        "tooltip": false
-    },
-
-    "custom/os-separator": {
-        "format": "|",
-        "tooltip": false
-    },
-
-    "clock": {
-        "format": "{:%a %b %d | %H:%M}",
-        "tooltip": false
-    },
-
-    "tray": {},
-
-    "group/group-info": {
-        "orientation": "inherit",
-        "modules": [
-            "battery",
-            "group/group-network",
-            "pulseaudio"
-        ]
-    },
-
-    "battery": {
-        "format": "{icon} {capacity}%",
-        "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
-        "tooltip": false
-    },
-
-    "group/group-network": {
-        "orientation": "inherit",
-        "modules": ["network#base", "network#addr"],
-        "drawer": {
-            "transition-left-to-right": false
-        }
-    },
-
-    "network#addr": {
-        "family": "ipv4",
-        "format": "{ipaddr} | ",
-        "format-disconnected": "",
-        "tooltip": false
-    },
-
-    "network#base": {
-        "family": "ipv4",
-        "format-ethernet": "\udb80\ude00 Eth",
-        "format-wifi": "\uf1eb {essid}",
-        "format-disconnected": "\udb81\udcb4 No network",
-        "tooltip": false
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-icons": {
-            "default": ["\uf026", "\uf027", "\uf028"],
-            "default-muted": "\ueee8"
-        }
-    },
-
-    "group/group-power": {
-        "orientation": "inherit",
-        "modules": [
-            "custom/power",
-            "custom/quit",
-            "custom/lock",
-            "custom/reboot",
-            "custom/separator"
+        "modules-left": [
+            "custom/os",
+            "custom/os-separator",
+            "hyprland/workspaces"
         ],
-        "drawer": {
-            "transition-left-to-right": false
+
+        "modules-center": [
+            "clock"
+        ],
+
+        "modules-right": [
+            "tray",
+            "group/group-info",
+            "group/group-power"
+        ],
+
+        ////////////////////
+        // MODULE OPTIONS //
+        ////////////////////
+
+        "custom/os": {
+            "format": "\uf30a",
+            "tooltip": false
+        },
+
+        "custom/os-separator": {
+            "format": "|",
+            "tooltip": false
+        },
+
+        "hyprland/workspaces": {
+            "persistent-workspaces": {
+                "1": [], "2": [], "3": [], "4": [], "5": []
+            }
+        },
+
+        "clock": {
+            "format": "{:%a %b %d | %H:%M}",
+            "tooltip": false
+        },
+
+        "tray": {},
+
+        "group/group-info": {
+            "orientation": "inherit",
+            "modules": [
+                "battery",
+                "group/group-network",
+                "pulseaudio"
+            ]
+        },
+
+        "battery": {
+            "format": "{icon} {capacity}%",
+            "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+            "tooltip": false
+        },
+
+        "group/group-network": {
+            "orientation": "inherit",
+            "modules": ["network#base", "network#addr"],
+            "drawer": {
+                "transition-left-to-right": false
+            }
+        },
+
+        "network#addr": {
+            "family": "ipv4",
+            "format": "{ipaddr} | ",
+            "format-disconnected": "",
+            "tooltip": false
+        },
+
+        "network#base": {
+            "family": "ipv4",
+            "format-ethernet": "\udb80\ude00 Eth",
+            "format-wifi": "\uf1eb {essid}",
+            "format-disconnected": "\udb81\udcb4 No network",
+            "tooltip": false
+        },
+
+        "pulseaudio": {
+            "format": "{icon} {volume}%",
+            "format-icons": {
+                "default": ["\uf026", "\uf027", "\uf028"],
+                "default-muted": "\ueee8"
+            }
+        },
+
+        "group/group-power": {
+            "orientation": "inherit",
+            "modules": [
+                "custom/power",
+                "custom/quit",
+                "custom/lock",
+                "custom/reboot",
+                "custom/separator"
+            ],
+            "drawer": {
+                "transition-left-to-right": false
+            }
+        },
+
+        "custom/quit": {
+            "format": "\udb83\udfc5",
+            "tooltip": false,
+            "on-click": "hyprctl dispatch exit"
+        },
+
+        "custom/lock": {
+            "format": "\udb80\udf41",
+            "tooltip": false,
+            "on-click": "hyprctl dispatch exec hyprlock"
+        },
+
+        "custom/reboot": {
+            "format": "\uead2",
+            "tooltip": false,
+            "on-click": "reboot"
+        },
+
+        "custom/separator": {
+            "format": " | ",
+            "tooltip": false
+        },
+
+        "custom/power": {
+            "format": "\uf011",
+            "tooltip": false,
+            "on-click": "shutdown now"
         }
     },
 
-    "custom/quit": {
-        "format": "\udb83\udfc5",
-        "tooltip": false,
-        "on-click": "hyprctl dispatch exit"
-    },
+    ///////////////////
+    // SECONDARY BAR //
+    ///////////////////
 
-    "custom/lock": {
-        "format": "\udb80\udf41",
-        "tooltip": false,
-        "on-click": "hyprctl dispatch exec hyprlock"
-    },
+    {
+        /////////////
+        // GENERAL //
+        /////////////
 
-    "custom/reboot": {
-        "format": "\uead2",
-        "tooltip": false,
-        "on-click": "reboot"
-    },
+        "name": "secondaryBar",
+        "output": "eDP-1",
+        "layer": "top",
+        "position": "top",
+        "margin": "0px 0px 0px 0px",
+        "spacing": 20,
 
-    "custom/separator": {
-        "format": " | ",
-        "tooltip": false
-    },
+        /////////////////////////
+        // MODULE DISTRIBUTION //
+        /////////////////////////
 
-    "custom/power": {
-        "format": "\uf011",
-        "tooltip": false,
-        "on-click": "shutdown now"
+        "modules-left": [
+            "custom/os",
+            "custom/os-separator",
+            "hyprland/workspaces"
+        ],
+
+        "modules-center": [],
+        "modules-right": [],
+
+        ////////////////////
+        // MODULE OPTIONS //
+        ////////////////////
+
+        "custom/os": {
+            "format": "\uf30a",
+            "tooltip": false
+        },
+
+        "custom/os-separator": {
+            "format": "|",
+            "tooltip": false
+        }
     }
-},
-
-///////////////////
-// SECONDARY BAR //
-///////////////////
-
-{
-    /////////////
-    // GENERAL //
-    /////////////
-
-    "name": "secondaryBar",
-    "output": "eDP-1",
-    "layer": "top",
-    "position": "top",
-    "margin": "0px 0px 0px 0px",
-    "spacing": 20,
-
-    /////////////////////////
-    // MODULE DISTRIBUTION //
-    /////////////////////////
-
-    "modules-left": [
-        "custom/os",
-        "custom/os-separator",
-        "hyprland/workspaces"
-    ],
-
-    "modules-center": [],
-    "modules-right": [],
-
-    ////////////////////
-    // MODULE OPTIONS //
-    ////////////////////
-
-    "custom/os": {
-        "format": "\uf30a",
-        "tooltip": false
-    },
-
-    "custom/os-separator": {
-        "format": "|",
-        "tooltip": false
-    }
-
-}]
+]

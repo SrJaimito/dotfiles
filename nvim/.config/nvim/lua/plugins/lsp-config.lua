@@ -12,14 +12,15 @@ return {
         config = function()
             require('mason-lspconfig').setup {
                 ensure_installed = {
-                    'clangd',                       -- C/C++
-                    'jedi_language_server',         -- Python
-                    'rust_analyzer',                -- Rust
-                    'vhdl_ls',                      -- VHDL
-                    'bashls',                       -- Bash
-                    'ltex',                         -- LaTeX
-                    'marksman',                     -- Markdown
-                    'verible'                       -- Verilog/SystemVerilog
+                    'clangd',               -- C/C++
+                    'jedi_language_server', -- Python
+                    'rust_analyzer',        -- Rust
+                    'vhdl_ls',              -- VHDL
+                    'bashls',               -- Bash
+                    'ltex',                 -- LaTeX
+                    'marksman',             -- Markdown
+                    'verible',              -- Verilog/SystemVerilog
+                    'zls'                   -- Zig
                 }
             }
         end
@@ -56,6 +57,11 @@ return {
             lspconfig.marksman.setup({
                 capabilities = capabilities
             })
+            lspconfig.zls.setup({
+                capabilities = capabilities
+            })
+
+            vim.g.zig_fmt_autosave = 0
 
             local opts = { noremap = true, silent = true }
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
