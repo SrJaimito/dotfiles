@@ -12,15 +12,15 @@ return {
         config = function()
             require('mason-lspconfig').setup {
                 ensure_installed = {
-                    'clangd',                       -- C/C++
-                    'jedi_language_server',         -- Python
-                    'rust_analyzer',                -- Rust
-                    'vhdl_ls',                      -- VHDL
-                    'bashls',                       -- Bash
-                    'ltex',                         -- LaTeX
-                    'marksman',                     -- Markdown
-                    'verible',                      -- Verilog/SystemVerilog
-                    'zls'                           -- Zig
+                    'clangd',               -- C/C++
+                    'jedi_language_server', -- Python
+                    'rust_analyzer',        -- Rust
+                    'vhdl_ls',              -- VHDL
+                    'bashls',               -- Bash
+                    'ltex',                 -- LaTeX
+                    'marksman',             -- Markdown
+                    'verible',              -- Verilog/SystemVerilog
+                    'zls'                   -- Zig
                 }
             }
         end
