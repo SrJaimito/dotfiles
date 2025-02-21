@@ -3,6 +3,6 @@
 
 polybar-msg cmd quit
 
-echo "---" | tee -a /tmp/polybar_main.log
-polybar main 2>&1 | tee -a /tmp/polybar_main.log & disown
+echo "---" | tee -a /tmp/polybar_primary.log
+polybar primary 2>&1 | tee -a /tmp/polybar_primary.log & disown
 
