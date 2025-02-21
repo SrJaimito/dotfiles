@@ -19,7 +19,8 @@ return {
                     'bashls',                       -- Bash
                     'ltex',                         -- LaTeX
                     'marksman',                     -- Markdown
-                    'verible'                       -- Verilog/SystemVerilog
+                    'verible',                      -- Verilog/SystemVerilog
+                    'zls'                           -- Zig
                 }
             }
         end
@@ -56,6 +57,11 @@ return {
             lspconfig.marksman.setup({
                 capabilities = capabilities
             })
+            lspconfig.zls.setup({
+                capabilities = capabilities
+            })
+
+            vim.g.zig_fmt_autosave = 0
 
             local opts = { noremap = true, silent = true }
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
