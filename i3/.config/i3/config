@@ -173,3 +173,10 @@ for_window [class="^.*"] border pixel 2
 # Launch status bar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
+# Gaps
+gaps top 30px
+# gaps bottom 5px
+# gaps horizontal 5px
+
+gaps inner 5px
+
