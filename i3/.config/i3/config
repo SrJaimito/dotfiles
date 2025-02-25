@@ -15,8 +15,8 @@ font pango:JetBrainsMonoNerdFontPropo 8
 
 exec_always --no-startup-id "~/.screenlayout/screenlayout.sh"
 
-set $monitor_right "DP-1-0"
-set $monitor_left "eDP-1"
+set $monitor_right $MONRIGHT
+set $monitor_left $MONLEFT
 
 # Autostart .desktop files
 # exec --no-startup-id dex-autostart --autostart --environment i3
@@ -34,7 +34,7 @@ set $monitor_left "eDP-1"
     ################
 
 # Launch terminal
-bindsym $mod+Return exec ghostty
+bindsym $mod+Return exec kitty
 
 # Launch file manager in floating mode
 bindsym $mod+n exec nautilus
