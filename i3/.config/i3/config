@@ -165,7 +165,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 #################
 
 # Wallpaper
-exec_always --no-startup-id "feh --bg-fill ~/Pictures/Wallpapers/black_hole.png"
+exec_always --no-startup-id "feh --bg-fill ~/Pictures/Wallpapers/earth.png"
 
 # Remove titlebar of windows
 for_window [class="^.*"] border pixel 2
