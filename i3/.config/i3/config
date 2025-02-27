@@ -174,9 +174,9 @@ for_window [class="^.*"] border pixel 2
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Gaps
-gaps top 30px
+gaps top 35px
 # gaps bottom 5px
 # gaps horizontal 5px
 
-gaps inner 5px
+gaps inner 8px
 
