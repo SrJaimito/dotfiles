@@ -15,8 +15,8 @@ font pango:JetBrainsMonoNerdFontPropo 8
 
 exec_always --no-startup-id "~/.screenlayout/screenlayout.sh"
 
-set $monitor_right $MONRIGHT
-set $monitor_left $MONLEFT
+set_from_resource $monitor_right i3wm.monright DP-1
+set_from_resource $monitor_left i3wm.monleft eDP-1
 
 # Autostart .desktop files
 # exec --no-startup-id dex-autostart --autostart --environment i3
