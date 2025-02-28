@@ -180,3 +180,6 @@ gaps top 35px
 
 gaps inner 8px
 
+# Launch composer
+exec_always --no-startup-id picom
+
