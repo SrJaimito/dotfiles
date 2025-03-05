@@ -9,7 +9,6 @@
         /////////////
 
         "name": "primaryBar",
-        "output": "DP-2",
         "layer": "top",
         "position": "top",
         "margin": "0px 0px 0px 0px",
