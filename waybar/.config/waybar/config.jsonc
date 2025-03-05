@@ -15,6 +15,10 @@
         "margin": "0px 0px 0px 0px",
         "spacing": 20,
 
+        "include": [
+            "~/.screenlayout/waybar/primary_monitor.conf"
+        ],
+
         /////////////////////////
         // MODULE DISTRIBUTION //
         /////////////////////////
@@ -162,11 +166,14 @@
         /////////////
 
         "name": "secondaryBar",
-        "output": "eDP-1",
         "layer": "top",
         "position": "top",
         "margin": "0px 0px 0px 0px",
         "spacing": 20,
+
+        "include": [
+            "~/.screenlayout/waybar/secondary_monitor.conf"
+        ],
 
         /////////////////////////
         // MODULE DISTRIBUTION //
