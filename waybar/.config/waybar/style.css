@@ -19,12 +19,11 @@ window#waybar {
 
 #workspaces button {
     color: #cdd6f4;
-    padding: 0;
+    padding: 0 10;
 }
 
 #workspaces button.visible {
-    background-color: #cdd6f4;
-    color: rgb(30, 30, 46);
+    color: rgb(116, 199, 236);
 }
 
 #clock {

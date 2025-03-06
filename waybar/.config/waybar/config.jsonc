@@ -43,7 +43,7 @@
         ////////////////////
 
         "custom/os": {
-            "format": "\uf30a",
+            "format": "",
             "tooltip": false
         },
 
@@ -55,6 +55,11 @@
         "hyprland/workspaces": {
             "persistent-workspaces": {
                 "1": [], "2": [], "3": [], "4": [], "5": []
+            },
+            "format": "<span font='16'>{icon}</span>",
+            "format-icons": {
+                "default": "",
+                "active": ""
             }
         },
 
@@ -192,13 +197,19 @@
         ////////////////////
 
         "custom/os": {
-            "format": "\uf30a",
+            "format": "",
             "tooltip": false
         },
 
         "custom/os-separator": {
             "format": "|",
             "tooltip": false
+        },
+
+        "hyprland/workspaces": {
+            "persistent-workspaces": {
+                "6": [], "7": [], "8": [], "9": [], "10": []
+            }
         }
     }
 ]
