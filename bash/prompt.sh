@@ -1,33 +1,35 @@
+# Colors
+TEXT_FG="\[\033[1;38;2;49;50;68m\]"
+
+SAPPHIRE_FG="\[\033[1;38;2;116;199;236m\]"
+SAPPHIRE_BG="\[\033[1;48;2;116;199;236m\]"
+
+MAUVE_FG="\[\033[1;38;2;203;166;247m\]"
+MAUVE_BG="\[\033[1;48;2;203;166;247m\]"
+
+PINK_FG="\[\033[1;38;2;245;194;231m\]"
+PINK_BG="\[\033[1;48;2;245;194;231m\]"
+
+GREEN_FG="\[\033[1;38;2;166;227;161m\]"
+GREEN_BG="\[\033[1;48;2;166;227;161m\]"
+
+
+# Symbols
+DIVIDER=$'\ue0b4';
+TICK=$'\u2714';
+CROSS=$'\u2718';
+CORNER=$'\u2514\u2500'
+
+
 # Custom prompt
 function prompt_command { 
-    DIVIDER=$'\ue0b4';
-    TICK=$'\u2714';
-    CROSS=$'\u2718';
-    # CORNER=$'\u2570\u2500';
-    CORNER=$'\u2514\u2500'
+    PS1="${debian_chroot:+($debian_chroot)}$TEXT_FG$SAPPHIRE_BG \u@\h $SAPPHIRE_FG$MAUVE_BG$DIVIDER$TEXT_FG \w ";
 
-    BLACK_FG="\[\033[38;2;30;30;46m\]";
-    PEACH_FG="\[\033[1;38;2;250;179;135m\]";
-    PEACH_BG="\[\033[1;48;2;250;179;135m\]";
-    BLUE_FG="\[\033[1;34m\]";
-    BLUE_BG="\[\033[1;44m\]";
-    PINK_FG="\[\033[1;35m\]";
-    PINK_BG="\[\033[1;45m\]";
-    GREEN_FG="\[\033[1;32m\]";
-    GREEN_BG="\[\033[1;42m\]";
-
-    PS1="${debian_chroot:+($debian_chroot)}$BLACK_FG$PEACH_BG \u@\h $PEACH_FG$BLUE_BG$DIVIDER$BLACK_FG \w ";
-
-    NEXT_DIVIDER_FG=$BLUE_FG;
-
-    if [ -n "$CONDA_DEFAULT_ENV" ]; then
-        PS1="$PS1$NEXT_DIVIDER_FG$GREEN_BG$DIVIDER$BLACK_FG conda:$CONDA_DEFAULT_ENV ";
-        NEXT_DIVIDER_FG=$GREEN_FG;
-    fi;
+    NEXT_DIVIDER_FG=$MAUVE_FG;
 
     CURRENT_GIT_BRANCH=$(git branch --show-current 2> /dev/null);
     if [ -n "$CURRENT_GIT_BRANCH" ]; then
-        PS1="$PS1$NEXT_DIVIDER_FG$PINK_BG$DIVIDER$BLACK_FG git:$CURRENT_GIT_BRANCH";
+        PS1="$PS1$NEXT_DIVIDER_FG$PINK_BG$DIVIDER$TEXT_FG git:$CURRENT_GIT_BRANCH";
 
         CURRENT_GIT_CHANGES=$(git status --short | wc -l);
         if [[ $CURRENT_GIT_CHANGES -ne 0 ]]; then
@@ -37,6 +39,11 @@ function prompt_command {
         fi;
 
         NEXT_DIVIDER_FG=$PINK_FG;
+    fi;
+
+    if [ -n "$CONDA_DEFAULT_ENV" ]; then
+        PS1="$PS1$NEXT_DIVIDER_FG$GREEN_BG$DIVIDER$TEXT_FG conda:$CONDA_DEFAULT_ENV ";
+        NEXT_DIVIDER_FG=$GREEN_FG;
     fi;
 
     PS1="$PS1$NEXT_DIVIDER_FG\[\033[1;49m\]$DIVIDER";
