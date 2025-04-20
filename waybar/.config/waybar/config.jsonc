@@ -29,7 +29,7 @@
         ],
 
         "modules-center": [
-            "clock"
+            "group/group-time"
         ],
 
         "modules-right": [
@@ -63,8 +63,33 @@
             }
         },
 
-        "clock": {
-            "format": "{:%a %b %d | %H:%M}",
+        "group/group-time": {
+            "orientation": "inherit",
+            "modules": [
+                "custom/calendar",
+                "clock#calendar",
+                "custom/clock",
+                "clock#clock"
+            ]
+        },
+
+        "custom/calendar": {
+            "format": "\uf133",
+            "tooltip": false
+        },
+
+        "clock#calendar": {
+            "format": "{:%a %b %d}",
+            "tooltip": false
+        },
+
+        "custom/clock": {
+            "format": "\uf017",
+            "tooltip": false
+        },
+
+        "clock#clock": {
+            "format": "{:%H:%M}",
             "tooltip": false
         },
 
