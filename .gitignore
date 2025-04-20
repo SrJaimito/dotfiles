@@ -1,5 +1,7 @@
 qtile/.config/qtile/__pycache__
 
 nvim/.config/nvim/lazy-lock.json
+
 hyprland/.config/hyprland/monitors.conf
+hyprland/.config/hyprland/env_variables.conf
 
