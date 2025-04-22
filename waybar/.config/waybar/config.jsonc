@@ -93,7 +93,9 @@
             "tooltip": false
         },
 
-        "tray": {},
+        "tray": {
+            "spacing": 10
+        },
 
         "group/group-info": {
             "orientation": "inherit",
