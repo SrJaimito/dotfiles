@@ -24,7 +24,6 @@
 
         "modules-left": [
             "custom/os",
-            "custom/os-separator",
             "hyprland/workspaces"
         ],
 
@@ -44,11 +43,6 @@
 
         "custom/os": {
             "format": "",
-            "tooltip": false
-        },
-
-        "custom/os-separator": {
-            "format": "|",
             "tooltip": false
         },
 
@@ -212,7 +206,6 @@
 
         "modules-left": [
             "custom/os",
-            "custom/os-separator",
             "hyprland/workspaces"
         ],
 
@@ -225,11 +218,6 @@
 
         "custom/os": {
             "format": "",
-            "tooltip": false
-        },
-
-        "custom/os-separator": {
-            "format": "|",
             "tooltip": false
         },
 
