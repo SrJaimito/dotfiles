@@ -1,0 +1,235 @@
+[
+    /////////////////
+    // PRIMARY BAR //
+    /////////////////
+
+    {
+        /////////////
+        // GENERAL //
+        /////////////
+
+        "name": "primaryBar",
+        "layer": "top",
+        "position": "top",
+        "margin": "0px 0px 0px 0px",
+        "spacing": 20,
+
+        "include": [
+            "~/dotfiles/waybar/.config/waybar/dual_monitor/primary_monitor.conf"
+        ],
+
+        /////////////////////////
+        // MODULE DISTRIBUTION //
+        /////////////////////////
+
+        "modules-left": [
+            "custom/os",
+            "hyprland/workspaces"
+        ],
+
+        "modules-center": [
+            "group/group-time"
+        ],
+
+        "modules-right": [
+            "tray",
+            "group/group-info",
+            "group/group-power"
+        ],
+
+        ////////////////////
+        // MODULE OPTIONS //
+        ////////////////////
+
+        "custom/os": {
+            "format": "",
+            "tooltip": false
+        },
+
+        "hyprland/workspaces": {
+            "persistent-workspaces": {
+                "1": [], "2": [], "3": [], "4": [], "5": []
+            },
+            "format": "<span font='16'>{icon}</span>",
+            "format-icons": {
+                "default": "",
+                "active": ""
+            }
+        },
+
+        "group/group-time": {
+            "orientation": "inherit",
+            "modules": [
+                "custom/calendar",
+                "clock#calendar",
+                "custom/clock",
+                "clock#clock"
+            ]
+        },
+
+        "custom/calendar": {
+            "format": "\uf133",
+            "tooltip": false
+        },
+
+        "clock#calendar": {
+            "format": "{:%a %b %d}",
+            "tooltip": false
+        },
+
+        "custom/clock": {
+            "format": "\uf017",
+            "tooltip": false
+        },
+
+        "clock#clock": {
+            "format": "{:%H:%M}",
+            "tooltip": false
+        },
+
+        "tray": {
+            "spacing": 10
+        },
+
+        "group/group-info": {
+            "orientation": "inherit",
+            "modules": [
+                "battery",
+                "group/group-network",
+                "pulseaudio"
+            ]
+        },
+
+        "battery": {
+            "format": "{icon} {capacity}%",
+            "format-icons": ["\uf244", "\uf243", "\uf242", "\uf241", "\uf240"],
+            "tooltip": false
+        },
+
+        "group/group-network": {
+            "orientation": "inherit",
+            "modules": ["network#base", "network#addr"],
+            "drawer": {
+                "transition-left-to-right": false
+            }
+        },
+
+        "network#addr": {
+            "family": "ipv4",
+            "format": "{ipaddr} | ",
+            "format-disconnected": "",
+            "tooltip": false
+        },
+
+        "network#base": {
+            "family": "ipv4",
+            "format-ethernet": "\udb80\ude00 Eth",
+            "format-wifi": "\uf1eb {essid}",
+            "format-disconnected": "\udb81\udcb4 No network",
+            "tooltip": false
+        },
+
+        "pulseaudio": {
+            "format": "{icon} {volume}%",
+            "format-icons": {
+                "default": ["\uf026", "\uf027", "\uf028"],
+                "default-muted": "\ueee8"
+            }
+        },
+
+        "group/group-power": {
+            "orientation": "inherit",
+            "modules": [
+                "custom/power",
+                "custom/quit",
+                "custom/lock",
+                "custom/reboot",
+                "custom/separator"
+            ],
+            "drawer": {
+                "transition-left-to-right": false
+            }
+        },
+
+        "custom/quit": {
+            "format": "\udb83\udfc5",
+            "tooltip": false,
+            "on-click": "hyprctl dispatch exit"
+        },
+
+        "custom/lock": {
+            "format": "\udb80\udf41",
+            "tooltip": false,
+            "on-click": "hyprctl dispatch exec hyprlock"
+        },
+
+        "custom/reboot": {
+            "format": "\uead2",
+            "tooltip": false,
+            "on-click": "reboot"
+        },
+
+        "custom/separator": {
+            "format": " | ",
+            "tooltip": false
+        },
+
+        "custom/power": {
+            "format": "\uf011",
+            "tooltip": false,
+            "on-click": "shutdown now"
+        }
+    },
+
+    ///////////////////
+    // SECONDARY BAR //
+    ///////////////////
+
+    {
+        /////////////
+        // GENERAL //
+        /////////////
+
+        "name": "secondaryBar",
+        "layer": "top",
+        "position": "top",
+        "margin": "0px 0px 0px 0px",
+        "spacing": 20,
+
+        "include": [
+            "~/dotfiles/waybar/.config/waybar/dual_monitor/secondary_monitor.conf"
+        ],
+
+        /////////////////////////
+        // MODULE DISTRIBUTION //
+        /////////////////////////
+
+        "modules-left": [
+            "custom/os",
+            "hyprland/workspaces"
+        ],
+
+        "modules-center": [],
+        "modules-right": [],
+
+        ////////////////////
+        // MODULE OPTIONS //
+        ////////////////////
+
+        "custom/os": {
+            "format": "",
+            "tooltip": false
+        },
+
+        "hyprland/workspaces": {
+            "persistent-workspaces": {
+                "6": [], "7": [], "8": [], "9": [], "10": []
+            },
+            "format": "<span font='16'>{icon}</span>",
+            "format-icons": {
+                "default": "",
+                "active": ""
+            }
+        }
+    }
+]

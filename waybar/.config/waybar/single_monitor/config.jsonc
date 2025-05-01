@@ -15,7 +15,7 @@
         "spacing": 20,
 
         "include": [
-            "~/.screenlayout/waybar/primary_monitor.conf"
+            "~/dotfiles/waybar/.config/waybar/single_monitor/primary_monitor.conf"
         ],
 
         /////////////////////////
@@ -48,7 +48,8 @@
 
         "hyprland/workspaces": {
             "persistent-workspaces": {
-                "1": [], "2": [], "3": [], "4": [], "5": []
+                "1": [], "2": [], "3": [], "4": [], "5": [],
+                "6": [], "7": [], "8": [], "9": [], "10": []
             },
             "format": "<span font='16'>{icon}</span>",
             "format-icons": {
@@ -178,58 +179,6 @@
             "format": "\uf011",
             "tooltip": false,
             "on-click": "shutdown now"
-        }
-    },
-
-    ///////////////////
-    // SECONDARY BAR //
-    ///////////////////
-
-    {
-        /////////////
-        // GENERAL //
-        /////////////
-
-        "name": "secondaryBar",
-        "layer": "top",
-        "position": "top",
-        "margin": "0px 0px 0px 0px",
-        "spacing": 20,
-
-        "include": [
-            "~/.screenlayout/waybar/secondary_monitor.conf"
-        ],
-
-        /////////////////////////
-        // MODULE DISTRIBUTION //
-        /////////////////////////
-
-        "modules-left": [
-            "custom/os",
-            "hyprland/workspaces"
-        ],
-
-        "modules-center": [],
-        "modules-right": [],
-
-        ////////////////////
-        // MODULE OPTIONS //
-        ////////////////////
-
-        "custom/os": {
-            "format": "",
-            "tooltip": false
-        },
-
-        "hyprland/workspaces": {
-            "persistent-workspaces": {
-                "6": [], "7": [], "8": [], "9": [], "10": []
-            },
-            "format": "<span font='16'>{icon}</span>",
-            "format-icons": {
-                "default": "",
-                "active": ""
-            }
         }
     }
 ]
