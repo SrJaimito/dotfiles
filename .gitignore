@@ -7,7 +7,13 @@ nvim/.config/nvim/lazy-lock.json
 # Hyprland
 hyprland/.config/hypr/hyprland.conf
 hyprland/.config/hypr/env_variables.conf
+hyprland/.config/hypr/single_monitor/monitors.conf
+hyprland/.config/hypr/dual_monitor/monitors.conf
 
 # Waybar
 waybar/.config/waybar/config.jsonc
+waybar/.config/waybar/single_monitor/primary_monitor.conf
+waybar/.config/waybar/single_monitor/secondary_monitor.conf
+waybar/.config/waybar/dual_monitor/primary_monitor.conf
+waybar/.config/waybar/dual_monitor/secondary_monitor.conf
 
