@@ -1,7 +1,7 @@
-$primaryMonitor = DP-2
-$secondaryMonitor = eDP-1
+# [monitor] will be replaced by an external automation script
+$primaryMonitor = [monitor]
 
-$bgImage = ~/Pictures/Wallpapers/black_hole.png
+$bgImage = ~/Pictures/Wallpapers/current_wallpaper.png
 
 general {
     disable_loading_bar = true
@@ -9,7 +9,7 @@ general {
 }
 
 background {
-    monitor = $primaryMonitor
+    monitor = 
 
     path = $bgImage
     blur_passes = 1
@@ -19,12 +19,6 @@ background {
     brightness = 0.8172
     vibrancy = 0.1696
     vibrancy_darkness = 0.0
-}
-
-background {
-    monitor = $secondaryMonitor
-
-    path = $bgImage
 }
 
 label {
