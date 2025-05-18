@@ -94,10 +94,19 @@
         "group/group-info": {
             "orientation": "inherit",
             "modules": [
+                "hyprland/language",
                 "battery",
                 "group/group-network",
                 "pulseaudio"
             ]
+        },
+
+        "hyprland/language": {
+            "format": "\uf11c {}",
+            "format-en": "US",
+            "format-es": "ES",
+            "tooltip": false,
+            "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
         },
 
         "battery": {
