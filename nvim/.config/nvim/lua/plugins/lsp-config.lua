@@ -20,7 +20,6 @@ return {
                     'ltex',                 -- LaTeX
                     'marksman',             -- Markdown
                     'verible',              -- Verilog/SystemVerilog
-                    'zls'                   -- Zig
                 }
             }
         end
@@ -30,45 +29,30 @@ return {
         lazy = false,
 
         config = function()
-            local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            local lspconfig = require('lspconfig')
-
-            lspconfig.clangd.setup({
-                capabilities = capabilities
-            })
-            lspconfig.jedi_language_server.setup({
-                capabilities = capabilities
-            })
-            lspconfig.rust_analyzer.setup({
-                capabilities = capabilities
-            })
-            lspconfig.vhdl_ls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.verible.setup({
-                capabilities = capabilities
-            })
-            lspconfig.bashls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.ltex.setup({
-                capabilities = capabilities
-            })
-            lspconfig.marksman.setup({
-                capabilities = capabilities
-            })
-            lspconfig.zls.setup({
-                capabilities = capabilities
+            vim.lsp.config('*', {
+                capabilities = require('cmp_nvim_lsp').default_capabilities()
             })
 
-            vim.g.zig_fmt_autosave = 0
+            vim.lsp.enable({
+                'clangd',
+                'jedi_language_server',
+                'rust_analyzer',
+                'vhdl_ls',
+                'verible',
+                'bashls',
+                'ltex',
+                'marksman',
+            })
 
-            local opts = { noremap = true, silent = true }
-            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-            vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+            vim.api.nvim_create_autocmd('LspAttach', {
+                callback = function(ev)
+                    local opts = { noremap = true, silent = true, buffer = ev.buf }
+                    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+                    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+                    vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, opts)
+                    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+                end
+            })
         end
     }
 }
