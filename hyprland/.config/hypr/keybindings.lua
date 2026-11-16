@@ -27,7 +27,8 @@ hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 -- Launch file manager
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 
--- Take screenshot
+-- Take screenshot (region selector in the gambito shell)
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.global("gambito:screenshot"))
 
 -- Move focus
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
